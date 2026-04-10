@@ -21,7 +21,10 @@
 </script>
 
 <main>
-  <h1>WHEEL OF FORTUNATE DECISIONS</h1>
+  <div class="header">
+    <h1>WHEEL OF FORTUNATE DECISIONS</h1>
+    <p>Add your todos and let the wheel decide what you'll do next.</p>
+  </div>
 
   <div class="container">
     <Wheel items={todos} onResult={handleResult} colors={COLORS} />
@@ -45,14 +48,16 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: 20px;
   }
   h1 {
     font-size: 2.5rem;
-    margin-bottom: 30px;
     text-shadow: 0 0 20px rgb(0, 255, 161, 0.8);
     color: #00ffa1;
     letter-spacing: 3px;
+  }
+  .header {
+    margin-bottom: 30px;
+     text-align: center;
   }
   .container {
     display: flex;
