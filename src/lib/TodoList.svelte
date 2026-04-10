@@ -1,4 +1,8 @@
 <script>
+    import { browser } from "$app/environment";
+    import { onMount } from "svelte";
+
+    const STORAGE_KEY = 'todos';
   /**
    * @typedef {Object} Props
    * @property {string[]} todos
@@ -8,6 +12,15 @@
   /** @type {Props} */
   let { todos = $bindable(), colors } = $props();
 
+  onMount(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) todos = JSON.parse(saved);
+  });
+
+  $effect(() => {
+    if (browser) localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+  });
+  
   let newTodo = $state('')
 
   function addTodo() {
