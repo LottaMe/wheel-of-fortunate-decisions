@@ -6,30 +6,30 @@
   ];
 
   /** @type {string[]} */
-  let items = $state([]);
+  let todos = $state([]);
 
   /** @type {Wheel} */
   let wheel;
 
-  let newItem = $state('');
+  let newTodo = $state('');
   let result = $state('');
   let showResult = $state(false);
 
-  function addItem() {
-    const val = newItem.trim();
+  function addTodo() {
+    const val = newTodo.trim();
     if (!val) return;
-    items = [...items, val];
-    newItem = '';
+    todos = [...todos, val];
+    newTodo = '';
   }
 
   /** @param {number} i */
-  function removeItem(i) {
-    items = items.filter((_, idx) => idx !== i);
+  function removeTodo(i) {
+    todos = todos.filter((_, idx) => idx !== i);
   }
 
   /** @param {KeyboardEvent} e */
   function handleKeydown(e) {
-    if (e.key === 'Enter') addItem();
+    if (e.key === 'Enter') addTodo();
   }
 
   /** @param {string} winner */
@@ -40,36 +40,36 @@
 </script>
 
 <main>
-  <h1>🎡 WHEEL OF FORTUNE</h1>
+  <h1>WHEEL OF FORTUNATE DECISIONS</h1>
 
   <div class="container">
     <div class="wheel-section">
-      <Wheel bind:this={wheel} {items} onResult={handleResult} colors={COLORS} />
+      <Wheel bind:this={wheel} items={todos} onResult={handleResult} colors={COLORS} />
     </div>
 
     <div class="controls">
-      <h2>⚙ MANAGE ITEMS</h2>
+      <h2>MANAGE TODOS</h2>
       <div class="input-row">
         <input
           type="text"
-          bind:value={newItem}
+          bind:value={newTodo}
           onkeydown={handleKeydown}
-          placeholder="Add an item..."
+          placeholder="Add a todo..."
           maxlength="30"
         />
-        <button onclick={addItem}>+</button>
+        <button onclick={addTodo}>+</button>
       </div>
-      <div class="items-list">
-        {#each items as item, i}
-          <div class="item-tag" style="background: {COLORS[i % COLORS.length]}">
-            <span>{item}</span>
-            <button onclick={() => removeItem(i)} title="Remove">✕</button>
+      <div class="todos-list">
+        {#each todos as todo, i}
+          <div class="todo-tag" style="background: {COLORS[i % COLORS.length]}">
+            <span>{todo}</span>
+            <button onclick={() => removeTodo(i)} title="Remove">✕</button>
           </div>
         {/each}
-        {#if items.length === 0}
-          <div class="empty-note">No items yet. Add some above!</div>
-        {:else if items.length < 2}
-          <div class="empty-note">Not enough items yet, add at least 2 to spin!</div>
+        {#if todos.length === 0}
+          <div class="empty-note">No todos yet. Add some above!</div>
+        {:else if todos.length < 2}
+          <div class="empty-note">Not enough todos yet, add at least 2 to spin!</div>
         {/if}
       </div>
     </div>
@@ -130,31 +130,6 @@
     align-items: center;
     gap: 20px;
   }
-
-  .spin-btn {
-    padding: 14px 50px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, #00ffa1, #006eff);
-    color: #1a1a2e;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    letter-spacing: 2px;
-    box-shadow: 0 4px 20px rgba(0, 162, 103, 0.557);
-    transition: transform 0.1s, box-shadow 0.1s;
-  }
-
-  .spin-btn:hover:not(:disabled) {
-    transform: scale(1.05);
-    box-shadow: 0 6px 30px rgba(0, 162, 103, 0.557);
-  }
-
-  .spin-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
   .controls {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
@@ -207,7 +182,7 @@
 
   .input-row button:hover { transform: scale(1.1); }
 
-  .items-list {
+  .todos-list {
     max-height: 300px;
     overflow-y: auto;
     display: flex;
@@ -215,11 +190,11 @@
     gap: 8px;
   }
 
-  .items-list::-webkit-scrollbar { width: 4px; }
-  .items-list::-webkit-scrollbar-track { background: transparent; }
-  .items-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 2px; }
+  .todos-list::-webkit-scrollbar { width: 4px; }
+  .todos-list::-webkit-scrollbar-track { background: transparent; }
+  .todos-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 2px; }
 
-  .item-tag {
+  .todo-tag {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -230,7 +205,7 @@
     font-weight: 600;
   }
 
-  .item-tag button {
+  .todo-tag button {
     background: none;
     border: none;
     color: rgba(0,0,0,0.5);
@@ -240,7 +215,7 @@
     transition: color 0.2s;
   }
 
-  .item-tag button:hover { color: #050505; }
+  .todo-tag button:hover { color: #050505; }
 
   .empty-note {
     text-align: center;
