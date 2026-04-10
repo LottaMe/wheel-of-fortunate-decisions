@@ -26,9 +26,7 @@
   <h1>WHEEL OF FORTUNATE DECISIONS</h1>
 
   <div class="container">
-    <div class="wheel-section">
-      <Wheel bind:this={wheel} items={todos} onResult={handleResult} colors={COLORS} />
-    </div>
+    <Wheel bind:this={wheel} items={todos} onResult={handleResult} colors={COLORS} />
 
     <TodoList bind:todos colors={COLORS} />
   </div>
@@ -78,13 +76,6 @@
     align-items: center;
     justify-content: center;
   }
-  .wheel-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
   .result-banner {
     position: fixed;
     inset: 0;

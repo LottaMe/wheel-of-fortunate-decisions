@@ -128,13 +128,23 @@
   }
 </script>
 
-<div class="wheel-wrapper" onclick={spin} onkeydown={spin} role="button" tabindex="0">
-  <canvas bind:this={canvas} width="420" height="420"></canvas>
-  <div class="pointer"></div>
-  <div class="center-circle"></div>
+<div class="wheel-section">
+  <div class="wheel-wrapper" onclick={spin} onkeydown={spin} role="button" tabindex="0">
+    <canvas bind:this={canvas} width="420" height="420"></canvas>
+    <div class="pointer"></div>
+    <div class="center-circle"></div>
+  </div>
 </div>
 
+
 <style>
+  .wheel-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
   .wheel-wrapper {
     position: relative;
     width: 420px;
