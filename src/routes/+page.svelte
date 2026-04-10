@@ -8,16 +8,16 @@
   ];
 
   /** @type {string[]} */
-  let items = ['Pizza', 'Burger', 'Sushi', 'Tacos', 'Pasta'];
+  let items = $state([]);
 
   /** @type {HTMLCanvasElement} */
   let canvas;
 
-  let newItem = '';
-  let rotation = 0;
-  let spinning = false;
-  let result = '';
-  let showResult = false;
+  let newItem = $state('');
+  let rotation = $state(0);
+  let spinning = $state(false);
+  let result = $state('');
+  let showResult = $state(false);
 
   onMount(() => {
     drawWheel();
@@ -188,7 +188,12 @@
   </div>
 
   {#if showResult}
-    <div class="result-banner" onclick={(e) => { if (e.target === e.currentTarget) showResult = false; }}>
+     <div
+      class="result-banner"
+      role="presentation"
+      onclick={(e) => { if (e.target === e.currentTarget) showResult = false; }}
+      onkeydown={(e) => { if ((e.key === 'Escape' || e.key === 'Enter') && e.target === e.currentTarget) showResult = false; }}
+    >
       <div class="result-card">
         <p>🎉 The wheel has spoken!</p>
         <h2>{result}</h2>
