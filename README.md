@@ -1,26 +1,20 @@
-# sv
+# Wheel Of Fortunate Decisions
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+The wheel of fortunate decisions will take the dreadful decision from you which chore to do first.
 
-## Creating a project
+Let fate decide which chore to do and get more done!
 
-If you're seeing this, you've probably already done this step. Congrats!
+Standard screen with added todos             |  Result screen after spinning the wheel
+:-------------------------:|:-------------------------:
+![Standard screen with added todos](https://github.com/user-attachments/assets/933127af-33a2-4342-86a6-a4d00f9f1902)  |  ![Result screen after spinning the wheel](https://github.com/user-attachments/assets/097ac5d0-2b1d-469a-82d2-f81a704dab6b)
 
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-npx sv@0.15.0 create --template minimal --types jsdoc --install npm .
-```
+<p align=center><i>pictures from 10.04.2026 - might be outdated</i></p>
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+This is a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+
+Install dependencies with `npm install`, then you can start a development server with:
 
 ```sh
 npm run dev
