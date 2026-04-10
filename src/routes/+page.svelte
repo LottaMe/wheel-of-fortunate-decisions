@@ -63,7 +63,14 @@
         {#if items.length === 0}
           <div class="empty-note">No items yet. Add some above!</div>
         {:else if items.length < 2}
+          {#each items as item, i}
+            <div class="item-tag" style="background: {COLORS[i % COLORS.length]}">
+              <span>{item}</span>
+              <button onclick={() => removeItem(i)} title="Remove">✕</button>
+            </div>
+          {/each}
           <div class="empty-note">Not enough items yet, add at least 2 to spin!</div>
+
         {:else}
           {#each items as item, i}
             <div class="item-tag" style="background: {COLORS[i % COLORS.length]}">
