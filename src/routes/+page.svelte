@@ -62,6 +62,8 @@
       <div class="items-list">
         {#if items.length === 0}
           <div class="empty-note">No items yet. Add some above!</div>
+        {:else if items.length < 2}
+          <div class="empty-note">Not enough items yet, add at least 2 to spin!</div>
         {:else}
           {#each items as item, i}
             <div class="item-tag" style="background: {COLORS[i % COLORS.length]}">
