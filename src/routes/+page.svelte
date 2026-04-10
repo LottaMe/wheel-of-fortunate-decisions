@@ -10,9 +10,6 @@
   /** @type {string[]} */
   let todos = $state([]);
 
-  /** @type {Wheel} */
-  let wheel;
-
   let result = $state('');
   let showResult = $state(false);
 
@@ -27,7 +24,7 @@
   <h1>WHEEL OF FORTUNATE DECISIONS</h1>
 
   <div class="container">
-    <Wheel bind:this={wheel} items={todos} onResult={handleResult} colors={COLORS} />
+    <Wheel items={todos} onResult={handleResult} colors={COLORS} />
 
     <TodoList bind:todos={todos} colors={COLORS} />
   </div>
